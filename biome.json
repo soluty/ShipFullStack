@@ -19,7 +19,11 @@
       "!**/.alchemy",
       "!**/.svelte-kit",
       "!**/wrangler.jsonc",
-      "!**/.source"
+      "!**/.source",
+      "!**/node_modules",
+      "!**/tsconfig.json",
+      "!**/global.css",
+      "!**/index.css"
     ]
   },
   "extends": ["ultracite"],
@@ -29,10 +33,18 @@
         "noMagicNumbers": "off",
         "useNamingConvention": "off",
         "noHeadElement": "off",
-        "noNestedTernary": "off"
+        "noNestedTernary": "off",
+        "useFilenamingConvention": "off"
       },
       "nursery": {
-        "useConsistentTypeDefinitions": "off"
+        "useConsistentTypeDefinitions": "off",
+        "noShadow": "off"
+      },
+      "performance": {
+        "noNamespaceImport": "off"
+      },
+      "suspicious": {
+        "noConsole": "off"
       }
     }
   }
