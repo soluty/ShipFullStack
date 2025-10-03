@@ -19,6 +19,19 @@ export const auth = betterAuth<BetterAuthOptions>({
   emailAndPassword: {
     enabled: true,
   },
+  // https://www.better-auth.com/docs/concepts/oauth
+  socialProviders: {
+    github: {
+      enabled: true,
+      clientId: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+    },
+    google: {
+      enabled: true,
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    },
+  },
   advanced: {
     defaultCookieAttributes: {
       sameSite: "none",

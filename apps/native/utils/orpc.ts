@@ -6,6 +6,11 @@ import { authClient } from "@/lib/auth-client";
 import type { AppRouterClient } from "../../server/src/routers";
 
 export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60,
+    },
+  },
   queryCache: new QueryCache({
     onError: (error) => {
       console.log(error);

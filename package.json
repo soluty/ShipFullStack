@@ -20,7 +20,7 @@
     "db:generate": "turbo -F server db:generate",
     "db:migrate": "turbo -F server db:migrate",
     "husky:install": "husky install",
-    "commit": "git add . && npx git-cz"
+    "commit": "git add . && npx git-cz && git push"
   },
   "dependencies": {},
   "devDependencies": {

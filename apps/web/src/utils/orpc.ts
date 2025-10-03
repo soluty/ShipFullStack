@@ -6,6 +6,11 @@ import { toast } from "sonner";
 import type { AppRouterClient } from "../../../server/src/routers/index";
 
 export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60,
+    },
+  },
   queryCache: new QueryCache({
     onError: (error) => {
       toast.error(`Error: ${error.message}`, {
