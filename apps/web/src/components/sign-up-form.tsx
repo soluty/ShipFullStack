@@ -39,6 +39,7 @@ export default function SignUpForm({
             toast.success("Sign up successful");
           },
           onError: (error) => {
+            console.log(error);
             toast.error(error.error.message || error.error.statusText);
           },
         }

@@ -37,6 +37,7 @@ export default function SignInForm({
             toast.success("Sign in successful");
           },
           onError: (error) => {
+            console.log(error);
             toast.error(error.error.message || error.error.statusText);
           },
         }
