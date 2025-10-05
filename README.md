@@ -58,7 +58,7 @@ The API is running at [http://localhost:3000](http://localhost:3000).
 ## Project Structure
 
 ```
-easyapp-fullstack-template/
+ShipFullStack/
 ├── apps/
 │   ├── web/         # Frontend application (React + TanStack Start)
 │   ├── native/      # Mobile application (React Native, Expo)
@@ -75,3 +75,8 @@ easyapp-fullstack-template/
 - `pnpm dev:native`: Start the React Native/Expo development server
 - `pnpm db:push`: Push schema changes to database
 - `pnpm db:studio`: Open database studio UI
+
+
+## Join Discord
+
+https://discord.gg/KZ6uwbHZG4
