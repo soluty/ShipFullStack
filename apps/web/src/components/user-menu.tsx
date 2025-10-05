@@ -22,7 +22,9 @@ export default function UserMenu() {
   if (!session) {
     return (
       <Button asChild variant="outline">
-        <Link to="/login">Sign In</Link>
+        <Link params={{ authView: "login" }} to="/auth/$authView">
+          Sign In
+        </Link>
       </Button>
     );
   }

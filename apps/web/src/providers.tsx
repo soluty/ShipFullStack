@@ -17,7 +17,7 @@ export function Providers({ children }: { children: ReactNode }) {
           Link={({ href, ...props }) => <Link to={href} {...props} />}
           navigate={(href) => router.navigate({ href })}
           replace={(href) => router.navigate({ href, replace: true })}
-          social={{ providers: ["github", "google", "facebook"] }}
+          social={{ providers: ["github", "google"] }}
         >
           {children}
         </AuthUIProviderTanstack>
