@@ -1,4 +1,4 @@
-import "dotenv/config";
+import { env } from "cloudflare:workers";
 import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
 import { onError } from "@orpc/server";
@@ -17,7 +17,8 @@ app.use(logger());
 app.use(
   "/*",
   cors({
-    origin: process.env.CORS_ORIGIN || "",
+    // origin: process.env.CORS_ORIGIN || "",
+    origin: env.CORS_ORIGIN || "",
     allowMethods: ["GET", "POST", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -73,14 +74,4 @@ app.use("/*", async (c, next) => {
 
 app.get("/", (c) => c.text("OK"));
 
-import { serve } from "@hono/node-server";
-
-serve(
-  {
-    fetch: app.fetch,
-    port: 3000,
-  },
-  (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
-  }
-);
+export default app;

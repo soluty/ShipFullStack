@@ -23,7 +23,8 @@
       "!**/node_modules",
       "!**/tsconfig.json",
       "!**/global.css",
-      "!**/index.css"
+      "!**/index.css",
+      "!**/worker-configuration.d.ts"
     ]
   },
   "extends": ["ultracite"],

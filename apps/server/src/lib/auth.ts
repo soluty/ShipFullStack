@@ -1,3 +1,4 @@
+import { env } from "cloudflare:workers";
 import { expo } from "@better-auth/expo";
 import { type BetterAuthOptions, betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
@@ -15,7 +16,8 @@ export const auth = betterAuth<BetterAuthOptions>({
       verification,
     },
   }),
-  trustedOrigins: [process.env.CORS_ORIGIN || "", "mybettertapp://", "exp://"],
+  // trustedOrigins: [process.env.CORS_ORIGIN || "", "mybettertapp://", "exp://"],
+  trustedOrigins: [env.CORS_ORIGIN || "", "mybettertapp://", "exp://"],
   emailAndPassword: {
     enabled: true,
   },
@@ -23,13 +25,17 @@ export const auth = betterAuth<BetterAuthOptions>({
   socialProviders: {
     github: {
       enabled: true,
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+      // clientId: process.env.GITHUB_CLIENT_ID || "",
+      // clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+      clientId: env.GITHUB_CLIENT_ID || "",
+      clientSecret: env.GITHUB_CLIENT_SECRET || "",
     },
     google: {
       enabled: true,
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      // clientId: process.env.GOOGLE_CLIENT_ID || "",
+      // clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: env.GOOGLE_CLIENT_ID || "",
+      clientSecret: env.GOOGLE_CLIENT_SECRET || "",
     },
   },
   advanced: {

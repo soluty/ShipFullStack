@@ -8,7 +8,7 @@
   "database": "postgres",
   "orm": "drizzle",
   "backend": "hono",
-  "runtime": "node",
+  "runtime": "workers",
   "frontend": [
     "tanstack-start",
     "native-nativewind"
@@ -24,6 +24,6 @@
   "packageManager": "pnpm",
   "dbSetup": "neon",
   "api": "orpc",
-  "webDeploy": "none",
-  "serverDeploy": "none"
+  "webDeploy": "wrangler",
+  "serverDeploy": "wrangler"
 }

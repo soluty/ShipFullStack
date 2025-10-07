@@ -11,7 +11,7 @@
       "@/*": ["./src/*"]
     },
     "outDir": "./dist",
-    "types": ["node"],
+    "types": ["./worker-configuration.d.ts", "node"],
     "composite": true,
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
