@@ -13,6 +13,7 @@
     "dev": "wrangler dev --port=3000",
     "start": "wrangler dev",
     "deploy": "wrangler deploy",
+    "sync:secrets": "node scripts/sync-wrangler-secrets.js --env-file=.env --only=DATABASE_URL,DATABASE_URL_POOLER,BETTER_AUTH_SECRET --worker=ship-fullstack-server",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "generate-types": "wrangler types"
   },
