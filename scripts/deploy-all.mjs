@@ -28,6 +28,7 @@ const ensureFileReadable = (path) => {
 	try {
 		accessSync(path, constants.R_OK);
 	} catch (error) {
+		console.log(error)
 		exitWithError(`Cannot read file: ${path}`);
 	}
 };
