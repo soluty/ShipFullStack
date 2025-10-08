@@ -24,7 +24,8 @@
       "!**/tsconfig.json",
       "!**/global.css",
       "!**/index.css",
-      "!**/worker-configuration.d.ts"
+      "!**/worker-configuration.d.ts",
+      "!**/deploy-all.mjs"
     ]
   },
   "extends": ["ultracite"],
