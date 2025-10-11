@@ -36,5 +36,12 @@
       "pnpm dlx ultracite fix"
     ]
   },
-  "packageManager": "pnpm@10.17.1"
+  "packageManager": "pnpm@10.17.1",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "maxHeaderWidth": 0,
+      "maxLineWidth": 0
+    }
+  }
 }
