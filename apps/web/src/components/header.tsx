@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import LanguageSwitcher from "./language-switcher";
 import UserMenu from "./user-menu";
 
 export default function Header() {
@@ -17,7 +18,11 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+
         <div className="flex items-center gap-2">
+          {/* language switcher */}
+          <LanguageSwitcher />
+          {/* user menu */}
           <UserMenu />
         </div>
       </div>
