@@ -5,9 +5,9 @@
   "scripts": {
     "build": "vite build",
     "serve": "vite preview",
-    "dev": "vite dev --port=3001",
+    "dev": "vite dev --port=15001",
     "start": "vite",
-    "wrangler:dev": "wrangler dev --port=3001",
+    "wrangler:dev": "wrangler dev --port=15001",
     "deploy": "pnpm run build && wrangler deploy",
     "cf-typegen": "wrangler types"
   },
