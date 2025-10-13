@@ -1,5 +1,6 @@
 import { AuthView } from "@daveyplate/better-auth-ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { m } from "@/paraglide/messages";
 
 export const Route = createFileRoute("/auth/$authView")({
   component: RouteComponent,
@@ -12,7 +13,12 @@ function RouteComponent() {
 
   return (
     <main className="flex grow flex-col items-center justify-center gap-20 self-center p-4 md:p-6">
-      <AuthView pathname={authView} />
+      <AuthView
+        localization={{
+          SIGN_IN: m["auth.login.sign_in"](),
+        }}
+        pathname={authView}
+      />
       {isSignUp && (
         <p className="text-center text-muted-foreground text-xs">
           By clicking continue, you agree to our{" "}

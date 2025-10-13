@@ -1,4 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "你好 {username}"
+  "example_message": "你好 {username}",
+  "auth": {
+    "login": {
+      "sign_in": "登录"
+    }
+  }
 }

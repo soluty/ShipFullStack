@@ -1,4 +1,9 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Hello {username}"
+  "example_message": "Hello {username}",
+  "auth": {
+    "login": {
+      "sign_in": "Sign In"
+    }
+  }
 }
