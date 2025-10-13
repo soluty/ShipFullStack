@@ -16,7 +16,11 @@
       "description": "输入您的信息以创建帐户",
       "register": "注册",
       "already_have_an_account": "已有账号?",
-      "sign_in_with": "登录"
+      "sign_in_with": "登录",
+      "clicking_continue": "点击继续，表示您同意我们的",
+      "terms_of_service": "服务条款",
+      "privacy_policy": "隐私政策",
+      "and": "和"
     }
   },
   "language": {

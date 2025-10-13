@@ -12,7 +12,7 @@ function RouteComponent() {
   const isSignUp = authView === "sign-up";
 
   return (
-    <main className="flex grow flex-col items-center justify-center gap-20 self-center p-4 md:p-6">
+    <main className="flex grow flex-col items-center justify-center gap-4 self-center p-4 md:p-6">
       <AuthView
         localization={{
           SIGN_IN: m["auth.login.sign_in"](),
@@ -33,19 +33,19 @@ function RouteComponent() {
       />
       {isSignUp && (
         <p className="text-center text-muted-foreground text-xs">
-          By clicking continue, you agree to our{" "}
+          {m["auth.sign_up.clicking_continue"]()}{" "}
           <Link
             className="underline underline-offset-4 transition-colors hover:text-primary"
             to="/terms"
           >
-            Terms of Service
+            {m["auth.sign_up.terms_of_service"]()}
           </Link>{" "}
-          and{" "}
+          {m["auth.sign_up.and"]()}{" "}
           <Link
             className="underline underline-offset-4 transition-colors hover:text-primary"
             to="/privacy"
           >
-            Privacy Policy
+            {m["auth.sign_up.privacy_policy"]()}
           </Link>
         </p>
       )}

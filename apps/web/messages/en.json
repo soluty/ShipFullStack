@@ -17,7 +17,11 @@
       "create_account": "Register",
       "register": "Register",
       "already_have_an_account": "Already have an account?",
-      "sign_in_with": "Sign in with"
+      "sign_in_with": "Sign in with",
+      "clicking_continue": "By clicking continue, you agree to our",
+      "terms_of_service": "Terms of Service",
+      "privacy_policy": "Privacy Policy",
+      "and": "and"
     }
   },
   "language": {
