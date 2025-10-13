@@ -3,13 +3,13 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth/auth-client";
 import { orpc } from "@/utils/orpc";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/{-$locale}/dashboard")({
   component: RouteComponent,
   beforeLoad: async () => {
     const session = await authClient.getSession();
     if (!session.data) {
       redirect({
-        to: "/auth/$authView",
+        to: "/{-$locale}/auth/$authView",
         params: {
           authView: "login",
         },

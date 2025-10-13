@@ -9,22 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
 import { Route as Char123LocaleChar125TermsRouteImport } from './routes/{-$locale}/terms'
 import { Route as Char123LocaleChar125PrivacyRouteImport } from './routes/{-$locale}/privacy'
-import { Route as AuthAuthViewRouteImport } from './routes/auth/$authView'
+import { Route as Char123LocaleChar125DashboardRouteImport } from './routes/{-$locale}/dashboard'
+import { Route as Char123LocaleChar125AuthAuthViewRouteImport } from './routes/{-$locale}/auth/$authView'
 
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const Char123LocaleChar125IndexRoute =
+  Char123LocaleChar125IndexRouteImport.update({
+    id: '/{-$locale}/',
+    path: '/{-$locale}/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const Char123LocaleChar125TermsRoute =
   Char123LocaleChar125TermsRouteImport.update({
     id: '/{-$locale}/terms',
@@ -37,80 +33,80 @@ const Char123LocaleChar125PrivacyRoute =
     path: '/{-$locale}/privacy',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AuthAuthViewRoute = AuthAuthViewRouteImport.update({
-  id: '/auth/$authView',
-  path: '/auth/$authView',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const Char123LocaleChar125DashboardRoute =
+  Char123LocaleChar125DashboardRouteImport.update({
+    id: '/{-$locale}/dashboard',
+    path: '/{-$locale}/dashboard',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char123LocaleChar125AuthAuthViewRoute =
+  Char123LocaleChar125AuthAuthViewRouteImport.update({
+    id: '/{-$locale}/auth/$authView',
+    path: '/{-$locale}/auth/$authView',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
-  '/auth/$authView': typeof AuthAuthViewRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/auth/$authView': typeof Char123LocaleChar125AuthAuthViewRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
-  '/auth/$authView': typeof AuthAuthViewRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/auth/$authView': typeof Char123LocaleChar125AuthAuthViewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
-  '/auth/$authView': typeof AuthAuthViewRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/auth/$authView': typeof Char123LocaleChar125AuthAuthViewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/dashboard'
-    | '/auth/$authView'
+    | '/{-$locale}/dashboard'
     | '/{-$locale}/privacy'
     | '/{-$locale}/terms'
+    | '/{-$locale}'
+    | '/{-$locale}/auth/$authView'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/dashboard'
-    | '/auth/$authView'
+    | '/{-$locale}/dashboard'
     | '/{-$locale}/privacy'
     | '/{-$locale}/terms'
+    | '/{-$locale}'
+    | '/{-$locale}/auth/$authView'
   id:
     | '__root__'
-    | '/'
-    | '/dashboard'
-    | '/auth/$authView'
+    | '/{-$locale}/dashboard'
     | '/{-$locale}/privacy'
     | '/{-$locale}/terms'
+    | '/{-$locale}/'
+    | '/{-$locale}/auth/$authView'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
-  AuthAuthViewRoute: typeof AuthAuthViewRoute
+  Char123LocaleChar125DashboardRoute: typeof Char123LocaleChar125DashboardRoute
   Char123LocaleChar125PrivacyRoute: typeof Char123LocaleChar125PrivacyRoute
   Char123LocaleChar125TermsRoute: typeof Char123LocaleChar125TermsRoute
+  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
+  Char123LocaleChar125AuthAuthViewRoute: typeof Char123LocaleChar125AuthAuthViewRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/{-$locale}/': {
+      id: '/{-$locale}/'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/terms': {
@@ -127,22 +123,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth/$authView': {
-      id: '/auth/$authView'
-      path: '/auth/$authView'
-      fullPath: '/auth/$authView'
-      preLoaderRoute: typeof AuthAuthViewRouteImport
+    '/{-$locale}/dashboard': {
+      id: '/{-$locale}/dashboard'
+      path: '/{-$locale}/dashboard'
+      fullPath: '/{-$locale}/dashboard'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/auth/$authView': {
+      id: '/{-$locale}/auth/$authView'
+      path: '/{-$locale}/auth/$authView'
+      fullPath: '/{-$locale}/auth/$authView'
+      preLoaderRoute: typeof Char123LocaleChar125AuthAuthViewRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
-  AuthAuthViewRoute: AuthAuthViewRoute,
+  Char123LocaleChar125DashboardRoute: Char123LocaleChar125DashboardRoute,
   Char123LocaleChar125PrivacyRoute: Char123LocaleChar125PrivacyRoute,
   Char123LocaleChar125TermsRoute: Char123LocaleChar125TermsRoute,
+  Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
+  Char123LocaleChar125AuthAuthViewRoute: Char123LocaleChar125AuthAuthViewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
