@@ -3,7 +3,20 @@
   "example_message": "你好 {username}",
   "auth": {
     "login": {
-      "sign_in": "登录"
+      "sign_in": "登录",
+      "description": "在下面输入您的电子邮件以登录您的帐户",
+      "email": "邮件",
+      "password": "密码",
+      "forgot_password": "忘记密码?",
+      "or_continue_with": "社交账号登录",
+      "dont_have_an_account": "没有账号?"
+    },
+    "sign_up": {
+      "sign_up": "注册",
+      "description": "输入您的信息以创建帐户",
+      "register": "注册",
+      "already_have_an_account": "已有账号?",
+      "sign_in_with": "登录"
     }
   },
   "language": {

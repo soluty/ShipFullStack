@@ -16,6 +16,18 @@ function RouteComponent() {
       <AuthView
         localization={{
           SIGN_IN: m["auth.login.sign_in"](),
+          SIGN_IN_DESCRIPTION: m["auth.login.description"](),
+          EMAIL: m["auth.login.email"](),
+          PASSWORD: m["auth.login.password"](),
+          FORGOT_PASSWORD_LINK: m["auth.login.forgot_password"](),
+          SIGN_IN_ACTION: m["auth.login.sign_in"](),
+          OR_CONTINUE_WITH: m["auth.login.or_continue_with"](),
+          DONT_HAVE_AN_ACCOUNT: m["auth.login.dont_have_an_account"](),
+          SIGN_UP: m["auth.sign_up.sign_up"](),
+          SIGN_UP_DESCRIPTION: m["auth.sign_up.description"](),
+          SIGN_UP_ACTION: m["auth.sign_up.register"](),
+          ALREADY_HAVE_AN_ACCOUNT: m["auth.sign_up.already_have_an_account"](),
+          SIGN_IN_WITH: m["auth.sign_up.sign_in_with"](),
         }}
         pathname={authView}
       />
