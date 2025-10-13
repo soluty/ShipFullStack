@@ -1,7 +1,7 @@
 import { AuthView } from "@daveyplate/better-auth-ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/{-$locale}/auth/$authView")({
+export const Route = createFileRoute("/auth/$authView")({
   component: RouteComponent,
 });
 
@@ -18,14 +18,14 @@ function RouteComponent() {
           By clicking continue, you agree to our{" "}
           <Link
             className="underline underline-offset-4 transition-colors hover:text-primary"
-            to="/{-$locale}/terms"
+            to="/terms"
           >
             Terms of Service
           </Link>{" "}
           and{" "}
           <Link
             className="underline underline-offset-4 transition-colors hover:text-primary"
-            to="/{-$locale}/privacy"
+            to="/privacy"
           >
             Privacy Policy
           </Link>
