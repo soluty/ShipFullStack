@@ -5,5 +5,8 @@
     "login": {
       "sign_in": "Sign In"
     }
+  },
+  "language": {
+    "switcher": "Switch Language"
   }
 }

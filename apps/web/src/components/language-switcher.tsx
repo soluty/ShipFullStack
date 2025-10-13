@@ -1,4 +1,3 @@
-import { useNavigate, useParams } from "@tanstack/react-router";
 import { Check, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,67 +8,46 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { webConfig } from "@/configs/web-config";
+import { m } from "@/paraglide/messages";
+import { getLocale, setLocale } from "@/paraglide/runtime";
 
-const LANGUAGES = [
-  { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "zh", name: "中文", flag: "🇨🇳" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "ja", name: "日本語", flag: "🇯🇵" },
-  { code: "ko", name: "한국어", flag: "🇰🇷" },
-] as const;
-
-// Regex for removing locale prefix from path
-const LOCALE_PREFIX_REGEX = /^\/(en|zh|es|fr|de|ja|ko)(\/|$)/;
+const { i18n } = webConfig;
 
 export default function LanguageSwitcher() {
-  const params = useParams({ strict: false });
-  const navigate = useNavigate();
+  const locales = i18n.locales;
 
-  // Get current locale from params or default to 'en'
-  const currentLocale = (params as { locale?: string }).locale || "en";
-  const currentLanguage =
-    LANGUAGES.find((lang) => lang.code === currentLocale) || LANGUAGES[0];
+  if (!Object.keys(locales).length) {
+    return null;
+  }
 
-  const handleLanguageChange = (langCode: string) => {
-    // Get current pathname
-    const currentPath = window.location.pathname;
+  const currentLanguage = getLocale();
 
-    // Remove existing locale prefix if present
-    const pathWithoutLocale = currentPath.replace(LOCALE_PREFIX_REGEX, "/");
-
-    // Navigate to new locale path
-    const newPath =
-      langCode === "en"
-        ? pathWithoutLocale || "/"
-        : `/${langCode}${pathWithoutLocale || "/"}`;
-
-    navigate({ to: newPath });
+  const handleLanguageChange = (langCode: "en" | "zh") => {
+    setLocale(langCode);
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button aria-label="Switch language" size="sm" variant="outline">
+        <Button size="sm" variant="outline">
           <Globe className="h-4 w-4" />
           <span className="hidden sm:inline">
-            {currentLanguage.flag} {currentLanguage.name}
+            {locales[currentLanguage].name}
           </span>
-          <span className="sm:inline md:hidden">{currentLanguage.flag}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuLabel>Select Language</DropdownMenuLabel>
+        <DropdownMenuLabel>{m["language.switcher"]()}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {LANGUAGES.map((lang) => (
+        {Object.entries(locales).map(([key, value]) => (
           <DropdownMenuItem
-            key={lang.code}
-            onClick={() => handleLanguageChange(lang.code)}
+            key={key}
+            onClick={() => handleLanguageChange(key as "en" | "zh")}
           >
-            <span className="text-lg">{lang.flag}</span>
-            <span className="flex-1">{lang.name}</span>
-            {lang.code === currentLocale && (
+            <span className="mr-1">{value.flag}</span>
+            <span>{value.name}</span>
+            {key === currentLanguage && (
               <Check className="h-4 w-4 text-primary" />
             )}
           </DropdownMenuItem>

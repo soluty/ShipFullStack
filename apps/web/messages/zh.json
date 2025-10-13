@@ -5,5 +5,8 @@
     "login": {
       "sign_in": "登录"
     }
+  },
+  "language": {
+    "switcher": "切换语言"
   }
 }

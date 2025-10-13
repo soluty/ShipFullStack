@@ -22,7 +22,7 @@ export default defineConfig(() => {
           {
             pattern: "/",
             localized: [
-              ["en", "/en"],
+              ["en", "/"],
               ["zh", "/zh"],
             ],
           },
