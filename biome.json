@@ -40,7 +40,8 @@
       },
       "nursery": {
         "useConsistentTypeDefinitions": "off",
-        "noShadow": "off"
+        "noShadow": "off",
+        "noUselessUndefined": "off"
       },
       "performance": {
         "noNamespaceImport": "off",

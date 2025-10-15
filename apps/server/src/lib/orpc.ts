@@ -9,11 +9,20 @@ const requireAuth = o.middleware(({ context, next }) => {
   if (!context.session?.user) {
     throw new ORPCError("UNAUTHORIZED");
   }
-  return next({
-    context: {
-      session: context.session,
-    },
-  });
+  return next();
+});
+
+const requireTenantAccess = o.middleware(({ context, next }) => {
+  if (!context.tenant) {
+    throw new ORPCError("BAD_REQUEST", { message: "Tenant is required" });
+  }
+
+  if (!context.tenantMembership) {
+    throw new ORPCError("FORBIDDEN");
+  }
+
+  return next();
 });
 
 export const protectedProcedure = publicProcedure.use(requireAuth);
+export const tenantProcedure = protectedProcedure.use(requireTenantAccess);
