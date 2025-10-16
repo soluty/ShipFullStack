@@ -49,6 +49,14 @@ export const translatedPathnames = createTranslatedPathnames({
     en: "/",
     zh: "/",
   },
+  "/auth": {
+    en: "/auth",
+    zh: "/auth",
+  },
+  "/auth/$authView": {
+    en: "/auth/$authView",
+    zh: "/auth/$authView",
+  },
   "/dashboard": {
     en: "/dashboard",
     zh: "/dashboard",
@@ -60,9 +68,5 @@ export const translatedPathnames = createTranslatedPathnames({
   "/terms": {
     en: "/terms",
     zh: "/terms",
-  },
-  "/auth/$authView": {
-    en: "/auth/$authView",
-    zh: "/auth/$authView",
   },
 });

@@ -29,33 +29,39 @@ export default function UserMenu() {
     );
   }
 
+  function signOut() {
+    authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          navigate({
+            to: "/",
+          });
+        },
+      },
+    });
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">{session.user.name}</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-card">
+      <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>{session.user.email}</DropdownMenuItem>
+        <DropdownMenuItem onClick={signOut}>
+          <div className="flex items-center space-x-2.5">
+            <p className="text-sm">Sign Out</p>
+          </div>
+        </DropdownMenuItem>
+        {/* dashboard */}
         <DropdownMenuItem asChild>
-          <Button
-            className="w-full"
-            onClick={() => {
-              authClient.signOut({
-                fetchOptions: {
-                  onSuccess: () => {
-                    navigate({
-                      to: "/",
-                    });
-                  },
-                },
-              });
-            }}
-            variant="destructive"
-          >
-            Sign Out
-          </Button>
+          <Link to="/dashboard">
+            <div className="flex items-center space-x-2.5">
+              <p className="text-sm">Dashboard</p>
+            </div>
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
