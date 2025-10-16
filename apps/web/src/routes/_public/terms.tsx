@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { m } from "@/paraglide/messages";
 
-export const Route = createFileRoute("/terms")({
+export const Route = createFileRoute("/_public/terms")({
   component: RouteComponent,
 });
 

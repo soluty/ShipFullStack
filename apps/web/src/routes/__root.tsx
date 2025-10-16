@@ -13,7 +13,6 @@ import Loader from "@/components/loader";
 import { Toaster } from "@/components/ui/sonner";
 import { getLocale } from "@/paraglide/runtime.js";
 import type { orpc } from "@/utils/orpc";
-import Header from "../components/header";
 import appCss from "../index.css?url";
 
 export interface RouterAppContext {
@@ -55,7 +54,6 @@ function RootDocument() {
       </head>
       <body>
         <div className="grid h-svh grid-rows-[auto_1fr]">
-          <Header />
           {isFetching ? <Loader /> : <Outlet />}
         </div>
         <Toaster richColors />

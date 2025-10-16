@@ -25,7 +25,8 @@
       "!**/global.css",
       "!**/index.css",
       "!**/worker-configuration.d.ts",
-      "!**/deploy-all.mjs"
+      "!**/deploy-all.mjs",
+      "!**/paraglide"
     ]
   },
   "extends": ["ultracite"],
