@@ -54,5 +54,21 @@ export default defineConfig(() => {
         },
       }),
     ],
+    server: {
+      // Proxy backend routes so OAuth callbacks hitting the Vite dev server
+      // (e.g. /api/auth/callback/...) reach the actual API running on port 15000.
+      proxy: {
+        "/api": {
+          target: process.env.VITE_SERVER_PROXY ?? "http://localhost:15000",
+          changeOrigin: true,
+          secure: false,
+        },
+        "/rpc": {
+          target: process.env.VITE_SERVER_PROXY ?? "http://localhost:15000",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
   };
 });

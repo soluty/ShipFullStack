@@ -30,7 +30,6 @@ const fail = (message) => {
 };
 
 const sanitizeJsonc = (input) => {
-  // biome-ignore lint/performance/useTopLevelRegex: false positive
   const lines = input.split(/\r?\n/u);
   const cleaned = [];
   for (const line of lines) {

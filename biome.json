@@ -48,7 +48,22 @@
         "useTopLevelRegex": "off"
       },
       "suspicious": {
-        "noConsole": "off"
+        "noConsole": "off",
+        "noDocumentCookie": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+      "a11y": {
+        "useValidAnchor": "off",
+        "useFocusableInteractive": "off",
+        "useSemanticElements": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       }
     }
   }

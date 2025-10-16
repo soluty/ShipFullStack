@@ -1,8 +1,18 @@
 import { AuthView } from "@daveyplate/better-auth-ui";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { authClient } from "@/lib/auth/auth-client";
 import { m } from "@/paraglide/messages";
 
 export const Route = createFileRoute("/auth/$authView")({
+  beforeLoad: async () => {
+    const session = await authClient.getSession();
+    if (session.data?.user) {
+      redirect({
+        to: "/dashboard",
+        throw: true,
+      });
+    }
+  },
   component: RouteComponent,
 });
 
@@ -30,6 +40,7 @@ function RouteComponent() {
           SIGN_IN_WITH: m["auth.sign_up.sign_in_with"](),
         }}
         pathname={authView}
+        redirectTo="/dashboard"
       />
       {isSignUp && (
         <p className="text-center text-muted-foreground text-xs">
