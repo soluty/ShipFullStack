@@ -7,6 +7,7 @@ import { account, session, user, verification } from "../db/schema/auth";
 
 export const auth = betterAuth<BetterAuthOptions>({
   baseURL: env.BETTER_AUTH_URL || "",
+  appName: "ShipFullStack",
   database: drizzleAdapter(db, {
     provider: "pg",
 
@@ -30,6 +31,7 @@ export const auth = betterAuth<BetterAuthOptions>({
       // clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
       clientId: env.GITHUB_CLIENT_ID || "",
       clientSecret: env.GITHUB_CLIENT_SECRET || "",
+      redirectURI: `${env.CORS_ORIGIN}/api/auth/callback/github`, // Frontend URL (proxied via Vite)
     },
     google: {
       enabled: true,
@@ -37,13 +39,15 @@ export const auth = betterAuth<BetterAuthOptions>({
       // clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
       clientId: env.GOOGLE_CLIENT_ID || "",
       clientSecret: env.GOOGLE_CLIENT_SECRET || "",
+      redirectURI: `${env.CORS_ORIGIN}/api/auth/callback/google`,
     },
   },
   advanced: {
     defaultCookieAttributes: {
-      sameSite: "none",
-      secure: true,
-      httpOnly: true,
+      sameSite: "lax",
+      secure: env.BETTER_AUTH_URL?.startsWith("https") ?? false, // Auto-enable in production
+      httpOnly: !env.BETTER_AUTH_URL?.includes("localhost"), // Disable in dev for debugging, enable in prod for security
+      path: "/",
     },
   },
   plugins: [expo()],

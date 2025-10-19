@@ -1,86 +1,39 @@
-import { env } from "cloudflare:workers";
-import { OpenAPIHandler } from "@orpc/openapi/fetch";
-import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
-import { onError } from "@orpc/server";
-import { RPCHandler } from "@orpc/server/fetch";
-import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
 import { Hono } from "hono";
-import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import { apiHandler } from "./handlers/api";
+import { rpcHandler } from "./handlers/rpc";
 import { auth } from "./lib/auth";
 import { createContext } from "./lib/context";
-import { appRouter } from "./routers/index";
+import { apiCorsMiddleware, authCorsMiddleware } from "./middlewares/cors";
+import { errorHandler } from "./middlewares/error";
+import { sessionMiddleware } from "./middlewares/session";
+import { stripTenantPrefixFromRequest } from "./utils/tenant";
 
-const app = new Hono();
+const app = new Hono<{
+  Variables: {
+    user: typeof auth.$Infer.Session.user | null;
+    session: typeof auth.$Infer.Session.session | null;
+  };
+}>();
 
-const TENANT_ROUTE_SEGMENTS = new Set(["api", "rpc"]);
+// Global error handler
+app.onError(errorHandler);
 
-const stripTenantPrefixFromRequest = (request: Request): Request => {
-  const url = new URL(request.url);
-  const segments = url.pathname.split("/").filter(Boolean);
-
-  if (segments.length < 2) {
-    return request;
-  }
-
-  const [firstSegment, secondSegment] = segments;
-
-  if (TENANT_ROUTE_SEGMENTS.has(firstSegment)) {
-    return request;
-  }
-
-  if (!TENANT_ROUTE_SEGMENTS.has(secondSegment)) {
-    return request;
-  }
-
-  const updatedUrl = new URL(url.toString());
-  updatedUrl.pathname = `/${segments.slice(1).join("/")}`;
-
-  return new Request(updatedUrl.toString(), request);
-};
-
+// Logger middleware
 app.use(logger());
-app.use(
-  "/*",
-  cors({
-    // origin: process.env.CORS_ORIGIN || "",
-    origin: env.CORS_ORIGIN || "",
-    allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: [
-      "Content-Type",
-      "Authorization",
-      "x-tenant-id",
-      "x-tenant-slug",
-    ],
-    credentials: true,
-  })
-);
 
-// better auth handler
+// Session middleware for API and RPC routes
+app.use("/api/*", sessionMiddleware);
+app.use("/rpc/*", sessionMiddleware);
+
+// CORS for auth endpoints
+app.use("/api/auth/*", authCorsMiddleware);
+
+// Better Auth handler
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
-export const apiHandler = new OpenAPIHandler(appRouter, {
-  plugins: [
-    new OpenAPIReferencePlugin({
-      schemaConverters: [new ZodToJsonSchemaConverter()],
-    }),
-  ],
-  interceptors: [
-    onError((error) => {
-      console.error(error);
-    }),
-  ],
-});
-
-export const rpcHandler = new RPCHandler(appRouter, {
-  interceptors: [
-    onError((error) => {
-      console.error(error);
-    }),
-  ],
-});
-
-app.use("/*", async (c, next) => {
+// CORS for API and RPC endpoints
+app.use("/*", apiCorsMiddleware, async (c, next) => {
   const context = await createContext({ context: c });
   const normalizedRequest = stripTenantPrefixFromRequest(c.req.raw);
 
@@ -105,6 +58,27 @@ app.use("/*", async (c, next) => {
   await next();
 });
 
-app.get("/", (c) => c.text("OK"));
+// Health check endpoint
+app.get("/", (c) =>
+  c.json({
+    status: "ok",
+    service: "ShipFullStack API",
+    timestamp: new Date().toISOString(),
+  })
+);
+
+app.get("/session", (c) => {
+  const session = c.get("session");
+  const user = c.get("user");
+
+  if (!user) {
+    return c.body(null, 401);
+  }
+
+  return c.json({
+    session,
+    user,
+  });
+});
 
 export default app;

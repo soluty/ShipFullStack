@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteRouteImport } from './routes/auth/route'
 import { Route as PublicRouteRouteImport } from './routes/_public/route'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as AuthCallbackRouteImport } from './routes/auth/callback'
 import { Route as AuthAuthViewRouteImport } from './routes/auth/$authView'
 import { Route as PublicTermsRouteImport } from './routes/_public/terms'
 import { Route as PublicPrivacyRouteImport } from './routes/_public/privacy'
@@ -30,6 +31,11 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PublicRouteRoute,
+} as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/callback',
+  path: '/callback',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 const AuthAuthViewRoute = AuthAuthViewRouteImport.update({
   id: '/$authView',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PublicPrivacyRoute
   '/terms': typeof PublicTermsRoute
   '/auth/$authView': typeof AuthAuthViewRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/': typeof PublicIndexRoute
 }
 export interface FileRoutesByTo {
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PublicPrivacyRoute
   '/terms': typeof PublicTermsRoute
   '/auth/$authView': typeof AuthAuthViewRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/': typeof PublicIndexRoute
 }
 export interface FileRoutesById {
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/_public/privacy': typeof PublicPrivacyRoute
   '/_public/terms': typeof PublicTermsRoute
   '/auth/$authView': typeof AuthAuthViewRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/_public/': typeof PublicIndexRoute
 }
 export interface FileRouteTypes {
@@ -86,9 +95,17 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/terms'
     | '/auth/$authView'
+    | '/auth/callback'
     | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/auth' | '/dashboard' | '/privacy' | '/terms' | '/auth/$authView' | '/'
+  to:
+    | '/auth'
+    | '/dashboard'
+    | '/privacy'
+    | '/terms'
+    | '/auth/$authView'
+    | '/auth/callback'
+    | '/'
   id:
     | '__root__'
     | '/_public'
@@ -97,6 +114,7 @@ export interface FileRouteTypes {
     | '/_public/privacy'
     | '/_public/terms'
     | '/auth/$authView'
+    | '/auth/callback'
     | '/_public/'
   fileRoutesById: FileRoutesById
 }
@@ -128,6 +146,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRouteRoute
+    }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
     '/auth/$authView': {
       id: '/auth/$authView'
@@ -178,10 +203,12 @@ const PublicRouteRouteWithChildren = PublicRouteRoute._addFileChildren(
 
 interface AuthRouteRouteChildren {
   AuthAuthViewRoute: typeof AuthAuthViewRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthAuthViewRoute: AuthAuthViewRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
 }
 
 const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(

@@ -2,6 +2,7 @@ import { AuthView } from "@daveyplate/better-auth-ui";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth/auth-client";
 import { m } from "@/paraglide/messages";
+import { localizeHref } from "@/paraglide/runtime";
 
 export const Route = createFileRoute("/auth/$authView")({
   beforeLoad: async () => {
@@ -24,6 +25,7 @@ function RouteComponent() {
   return (
     <main className="flex grow flex-col items-center justify-center gap-4 self-center p-4 md:p-6">
       <AuthView
+        callbackURL={localizeHref("/auth/callback")}
         localization={{
           SIGN_IN: m["auth.login.sign_in"](),
           SIGN_IN_DESCRIPTION: m["auth.login.description"](),
@@ -39,8 +41,6 @@ function RouteComponent() {
           ALREADY_HAVE_AN_ACCOUNT: m["auth.sign_up.already_have_an_account"](),
           SIGN_IN_WITH: m["auth.sign_up.sign_in_with"](),
         }}
-        pathname={authView}
-        redirectTo="/dashboard"
       />
       {isSignUp && (
         <p className="text-center text-muted-foreground text-xs">
