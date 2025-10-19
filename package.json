@@ -19,9 +19,11 @@
     "db:studio": "turbo -F server db:studio",
     "db:generate": "turbo -F server db:generate",
     "db:migrate": "turbo -F server db:migrate",
+    "deploy:web": "turbo -F web deploy",
+    "deploy:server": "turbo -F server deploy",
+    "deploy": "turbo -F web -F server deploy",
     "husky:install": "husky install",
-    "commit": "git add . && npx cz && git push",
-    "deploy:all": "node ./scripts/deploy-all.mjs"
+    "commit": "git add . && npx cz && git push"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",

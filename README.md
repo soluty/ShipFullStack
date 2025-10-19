@@ -76,6 +76,51 @@ ShipFullStack/
 - `pnpm db:push`: Push schema changes to database
 - `pnpm db:studio`: Open database studio UI
 
+## 🚀 Deployment
+
+This project supports **automatic deployment** via GitHub Actions. Simply push to the `main` branch and your apps will be automatically deployed to Cloudflare!
+
+### Quick Setup
+
+1. **Configure Cloudflare Secrets** in GitHub:
+   - `CLOUDFLARE_API_TOKEN`
+   - `CLOUDFLARE_ACCOUNT_ID`
+
+2. **Push to deploy**:
+   ```bash
+   git add .
+   git commit -m "feat: your changes"
+   git push origin main
+   ```
+
+That's it! Your changes will be automatically deployed. 🎉
+
+### Features
+
+- ✅ **Smart deployment**: Only deploys apps with actual changes
+- ✅ **PR preview**: Automatic build checks on pull requests
+- ✅ **Manual trigger**: Deploy anytime from GitHub Actions
+- ✅ **Deployment summary**: Clear status for each deployment
+
+### Documentation
+
+- [Quick Setup Guide](./.github/SETUP.md)
+- [Detailed Deployment Guide](./.github/DEPLOYMENT.md)
+
+### Manual Deployment (Alternative)
+
+If you prefer manual deployment:
+
+```bash
+# Deploy all applications
+pnpm run deploy
+
+# Deploy only web app
+pnpm run deploy:web
+
+# Deploy only server app
+pnpm run deploy:server
+```
 
 ## Join Discord
 
