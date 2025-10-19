@@ -9,7 +9,6 @@ on:
 
 env:
   NODE_VERSION: "20"
-  PNPM_VERSION: "10"
 
 jobs:
   # 检测哪些应用需要部署
@@ -51,8 +50,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -93,8 +90,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -114,7 +109,7 @@ jobs:
           command: deploy
 
       - name: Sync server secrets (Optional)
-        if: false  # 按需启用，需要配置额外的环境变量
+        if: false # 按需启用，需要配置额外的环境变量
         run: pnpm run sync:secrets
         working-directory: ./apps/server
         env:
@@ -138,7 +133,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Application | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-------------|--------|" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ "${{ needs.deploy-web.result }}" == "success" ]; then
             echo "| Web App | ✅ Deployed |" >> $GITHUB_STEP_SUMMARY
           elif [ "${{ needs.deploy-web.result }}" == "skipped" ]; then
@@ -146,7 +141,7 @@ jobs:
           else
             echo "| Web App | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           if [ "${{ needs.deploy-server.result }}" == "success" ]; then
             echo "| Server App | ✅ Deployed |" >> $GITHUB_STEP_SUMMARY
           elif [ "${{ needs.deploy-server.result }}" == "skipped" ]; then
