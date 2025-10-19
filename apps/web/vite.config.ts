@@ -54,19 +54,5 @@ export default defineConfig(() => {
         },
       }),
     ],
-    server: {
-      proxy: {
-        "/api": {
-          target: process.env.VITE_SERVER_PROXY ?? "http://localhost:15000",
-          changeOrigin: true,
-          secure: false,
-        },
-        "/rpc": {
-          target: process.env.VITE_SERVER_PROXY ?? "http://localhost:15000",
-          changeOrigin: true,
-          secure: false,
-        },
-      },
-    },
   };
 });

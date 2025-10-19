@@ -4,25 +4,15 @@
 	"compatibility_date": "2025-06-15",
 	"compatibility_flags": ["nodejs_compat"],
 	"vars": {
-		"NODE_ENV": "production"
-	},
-	"env": {
-		"development": {
-			"vars": {
-				"NODE_ENV": "development",
-				"CORS_ORIGIN": "http://localhost:15001",
-				"BETTER_AUTH_URL": "http://localhost:15000"
-			}
-		},
-		"production": {
-			"vars": {
-				"NODE_ENV": "production",
-				"CORS_ORIGIN": "https://ship-fullstack.ship-fullstack.workers.dev",
-				"BETTER_AUTH_URL": "https://ship-fullstack-server.ship-fullstack.workers.dev"
-			}
-		}
+		"NODE_ENV": "production",
+		"CORS_ORIGIN": "https://ship-fullstack.ship-fullstack.workers.dev",
+		"BETTER_AUTH_URL": "https://ship-fullstack-server.ship-fullstack.workers.dev",
+		// Add non-sensitive public IDs here:
+		"GITHUB_CLIENT_ID": "Ov23lisJ5FpBoklrFAVk"
+		// "GOOGLE_CLIENT_ID": "your_google_client_id"
 	}
 	// For sensitive data, use:
-	// wrangler secret put SECRET_NAME
+	// pnpm run secrets:setup
+	// or: wrangler secret put SECRET_NAME
 	// Don't add secrets to "vars" - they're visible in the dashboard!
 }

@@ -33,7 +33,11 @@ app.use("/api/auth/*", authCorsMiddleware);
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
 // CORS for API and RPC endpoints
-app.use("/*", apiCorsMiddleware, async (c, next) => {
+app.use("/rpc/*", apiCorsMiddleware);
+app.use("/api/*", apiCorsMiddleware);
+
+// RPC and API handler
+app.use("/*", async (c, next) => {
   const context = await createContext({ context: c });
   const normalizedRequest = stripTenantPrefixFromRequest(c.req.raw);
 

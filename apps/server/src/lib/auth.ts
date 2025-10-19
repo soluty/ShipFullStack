@@ -27,19 +27,15 @@ export const auth = betterAuth<BetterAuthOptions>({
   socialProviders: {
     github: {
       enabled: true,
-      // clientId: process.env.GITHUB_CLIENT_ID || "",
-      // clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
       clientId: env.GITHUB_CLIENT_ID || "",
       clientSecret: env.GITHUB_CLIENT_SECRET || "",
-      redirectURI: `${env.CORS_ORIGIN}/api/auth/callback/github`, // Frontend URL (proxied via Vite)
+      redirectURI: `${env.BETTER_AUTH_URL}/api/auth/callback/github`, // Server callback URL
     },
     google: {
       enabled: true,
-      // clientId: process.env.GOOGLE_CLIENT_ID || "",
-      // clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
       clientId: env.GOOGLE_CLIENT_ID || "",
       clientSecret: env.GOOGLE_CLIENT_SECRET || "",
-      redirectURI: `${env.CORS_ORIGIN}/api/auth/callback/google`,
+      redirectURI: `${env.BETTER_AUTH_URL}/api/auth/callback/google`, // Server callback URL
     },
   },
   advanced: {

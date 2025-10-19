@@ -22,10 +22,14 @@ function RouteComponent() {
 
   const isSignUp = authView === "sign-up";
 
+  // Build full callback URL for OAuth redirects
+  const appUrl = import.meta.env.VITE_APP_URL || window.location.origin;
+  const callbackUrl = `${appUrl}${localizeHref("/auth/callback")}`;
+
   return (
     <main className="flex grow flex-col items-center justify-center gap-4 self-center p-4 md:p-6">
       <AuthView
-        callbackURL={localizeHref("/auth/callback")}
+        callbackURL={callbackUrl}
         localization={{
           SIGN_IN: m["auth.login.sign_in"](),
           SIGN_IN_DESCRIPTION: m["auth.login.description"](),
