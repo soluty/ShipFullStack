@@ -1,6 +1,6 @@
 # ShipFullStack
 
-A modern TypeScript stack that combines React, TanStack Start, Hono, ORPC, and more.
+A modern TypeScript stack that combines React, TanStack Start, Hono, ORPC,  Expo and more.
 
 ## Features
 
