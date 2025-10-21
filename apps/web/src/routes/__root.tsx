@@ -53,9 +53,7 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body>
-        <div className="grid h-svh grid-rows-[auto_1fr]">
-          {isFetching ? <Loader /> : <Outlet />}
-        </div>
+        {isFetching ? <Loader /> : <Outlet />}
         <Toaster richColors />
         <TanStackDevtools
           plugins={[
