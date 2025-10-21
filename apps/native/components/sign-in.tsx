@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
   Text,
   TextInput,
   TouchableOpacity,
@@ -42,7 +44,10 @@ export function SignIn() {
   };
 
   return (
-    <View className="mt-6 rounded-lg border border-border bg-card p-4">
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="mt-6 rounded-lg border border-border bg-card p-4"
+    >
       <Text className="mb-4 font-semibold text-foreground text-lg">
         Sign In
       </Text>
@@ -83,6 +88,6 @@ export function SignIn() {
           <Text className="font-medium text-primary-foreground">Sign In</Text>
         )}
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
