@@ -5,7 +5,6 @@ import {
   IconNotification,
   IconUserCircle,
 } from "@tabler/icons-react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -22,6 +21,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { signOut } from "@/lib/auth/auth-client";
 
 export function NavUser({
   user,
@@ -92,7 +92,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={signOut}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

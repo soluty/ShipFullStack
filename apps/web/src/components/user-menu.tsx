@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,12 +7,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { authClient } from "@/lib/auth/auth-client";
+import { authClient, signOut } from "@/lib/auth/auth-client";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 
 export default function UserMenu() {
-  const navigate = useNavigate();
   const { data: session, isPending } = authClient.useSession();
 
   if (isPending) {
@@ -27,18 +26,6 @@ export default function UserMenu() {
         </Link>
       </Button>
     );
-  }
-
-  function signOut() {
-    authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          navigate({
-            to: "/",
-          });
-        },
-      },
-    });
   }
 
   return (
