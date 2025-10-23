@@ -21,7 +21,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { signOut } from "@/lib/auth/auth-client";
+import { useSignOut } from "@/hooks/use-signOut";
 
 export function NavUser({
   user,
@@ -33,6 +33,7 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const { signOut } = useSignOut();
 
   return (
     <SidebarMenu>

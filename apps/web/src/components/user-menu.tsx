@@ -7,12 +7,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { authClient, signOut } from "@/lib/auth/auth-client";
+import { useSignOut } from "@/hooks/use-signOut";
+import { authClient } from "@/lib/auth/auth-client";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 
 export default function UserMenu() {
   const { data: session, isPending } = authClient.useSession();
+  const { signOut } = useSignOut();
 
   if (isPending) {
     return <Skeleton className="h-9 w-24" />;
