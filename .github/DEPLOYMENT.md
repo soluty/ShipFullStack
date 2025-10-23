@@ -35,6 +35,8 @@ This project is configured with GitHub Actions for automatic deployment to Cloud
 |-------------|-------------|---------------|
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API Token | See step 1 above |
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Account ID | See step 2 above |
+| `VITE_SERVER_URL` | Production server URL | Your deployed server URL (e.g., `https://your-server.workers.dev`) |
+| `VITE_APP_URL` | Production frontend URL | Your deployed web app URL (e.g., `https://your-app.pages.dev`) |
 
 ### 4. Configure Database Secrets (Optional)
 
@@ -53,10 +55,11 @@ When you push code to the `main` or `master` branch, the following steps will be
 1. ✅ Checkout code
 2. ✅ Setup Node.js and pnpm environment
 3. ✅ Install dependencies
-4. ✅ Build web application
-5. ✅ Deploy web application to Cloudflare
-6. ✅ Deploy server application to Cloudflare
-7. ✅ Sync server secrets (if configured)
+4. ✅ Create production environment file from GitHub Secrets
+5. ✅ Build web application
+6. ✅ Deploy web application to Cloudflare
+7. ✅ Deploy server application to Cloudflare
+8. ✅ Sync server secrets (if configured)
 
 ## 🔧 Manual Deployment Trigger
 
@@ -104,10 +107,11 @@ pnpm run deploy:server
 
 ## ⚠️ Important Notes
 
-1. **Environment Variables**: Ensure production environment configurations in `apps/web/.env.production` and `apps/server/wrangler.jsonc` are correct
+1. **Environment Variables**: Web app environment variables are configured via GitHub Secrets and automatically created during deployment. Server configurations are in `apps/server/wrangler.jsonc`
 2. **Branch Protection**: Recommend setting up protection rules for the `main` branch, requiring PR review before merging
-3. **Secret Security**: Never hardcode API tokens or other sensitive information in code
+3. **Secret Security**: Never hardcode API tokens or other sensitive information in code. Always use GitHub Secrets
 4. **Deployment Frequency**: Every push to the main branch triggers deployment, proceed with caution
+5. **`.env.production` File**: This file is gitignored and auto-generated during CI/CD. Do not commit it to version control
 
 ## 🎯 Best Practices
 

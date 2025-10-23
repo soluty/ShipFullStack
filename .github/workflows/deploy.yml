@@ -60,6 +60,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Create production environment file
+        run: |
+          cat > apps/web/.env.production << EOF
+          VITE_SERVER_URL=${{ secrets.VITE_SERVER_URL }}
+          VITE_APP_URL=${{ secrets.VITE_APP_URL }}
+          EOF
+        shell: bash
+
       - name: Deploy web to Cloudflare
         run: pnpm run deploy
         working-directory: ./apps/web
