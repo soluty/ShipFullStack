@@ -9,6 +9,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { ThemeProvider } from "@/components/context/theme-provider";
 import Loader from "@/components/loader";
 import { Toaster } from "@/components/ui/sonner";
 import { getLocale } from "@/paraglide/runtime.js";
@@ -53,21 +54,23 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body>
-        {isFetching ? <Loader /> : <Outlet />}
-        <Toaster richColors />
-        <TanStackDevtools
-          plugins={[
-            {
-              name: "TanStack Query",
-              render: <ReactQueryDevtoolsPanel />,
-            },
-            {
-              name: "TanStack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
-        <Scripts />
+        <ThemeProvider>
+          {isFetching ? <Loader /> : <Outlet />}
+          <Toaster richColors />
+          <TanStackDevtools
+            plugins={[
+              {
+                name: "TanStack Query",
+                render: <ReactQueryDevtoolsPanel />,
+              },
+              {
+                name: "TanStack Router",
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+            ]}
+          />
+          <Scripts />
+        </ThemeProvider>
       </body>
     </html>
   );

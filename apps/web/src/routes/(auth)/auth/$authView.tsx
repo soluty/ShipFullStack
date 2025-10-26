@@ -4,7 +4,7 @@ import { authClient } from "@/lib/auth/auth-client";
 import { m } from "@/paraglide/messages";
 import { localizeHref } from "@/paraglide/runtime";
 
-export const Route = createFileRoute("/auth/$authView")({
+export const Route = createFileRoute("/(auth)/auth/$authView")({
   beforeLoad: async () => {
     const session = await authClient.getSession();
     if (session.data?.user) {

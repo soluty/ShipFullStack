@@ -1,7 +1,6 @@
 // import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { AppSidebar } from "@/components/dashboard/slider";
 import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
@@ -10,7 +9,7 @@ import data from "@/configs/dashboard.json" with { type: "json" };
 import { authClient } from "@/lib/auth/auth-client";
 // import { orpc } from "@/utils/orpc";
 
-export const Route = createFileRoute("/_dashboard/dashboard")({
+export const Route = createFileRoute("/_authenticated/(dashboard)/dashboard")({
   component: RouteComponent,
   beforeLoad: async () => {
     const session = await authClient.getSession();
@@ -41,7 +40,6 @@ function RouteComponent() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">

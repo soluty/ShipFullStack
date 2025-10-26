@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Loader from "@/components/loader";
 import { authClient } from "@/lib/auth/auth-client";
 
-export const Route = createFileRoute("/auth/callback")({
+export const Route = createFileRoute("/(auth)/auth/callback")({
   component: RouteComponent,
 });
 

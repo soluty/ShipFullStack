@@ -26,7 +26,8 @@
       "!**/index.css",
       "!**/worker-configuration.d.ts",
       "!**/deploy-all.mjs",
-      "!**/paraglide"
+      "!**/paraglide",
+      "!**/apps/web/src/components/ui/*.tsx"
     ]
   },
   "extends": ["ultracite"],

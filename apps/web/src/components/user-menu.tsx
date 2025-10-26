@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSignOut } from "@/hooks/use-signOut";
+import { useSignOut } from "@/hooks/use-sign-out";
 import { authClient } from "@/lib/auth/auth-client";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";

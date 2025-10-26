@@ -9,20 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteRouteImport } from './routes/auth/route'
 import { Route as PublicRouteRouteImport } from './routes/_public/route'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
-import { Route as AuthCallbackRouteImport } from './routes/auth/callback'
-import { Route as AuthAuthViewRouteImport } from './routes/auth/$authView'
 import { Route as PublicTermsRouteImport } from './routes/_public/terms'
 import { Route as PublicPrivacyRouteImport } from './routes/_public/privacy'
-import { Route as DashboardDashboardRouteImport } from './routes/_dashboard/dashboard'
+import { Route as AuthenticateddashboardRouteRouteImport } from './routes/_authenticated/(dashboard)/route'
+import { Route as authAuthRouteRouteImport } from './routes/(auth)/auth/route'
+import { Route as AuthenticateddashboardDashboardRouteImport } from './routes/_authenticated/(dashboard)/dashboard'
+import { Route as authAuthCallbackRouteImport } from './routes/(auth)/auth/callback'
+import { Route as authAuthAuthViewRouteImport } from './routes/(auth)/auth/$authView'
 
-const AuthRouteRoute = AuthRouteRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PublicRouteRoute = PublicRouteRouteImport.update({
   id: '/_public',
   getParentRoute: () => rootRouteImport,
@@ -31,16 +27,6 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PublicRouteRoute,
-} as any)
-const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/callback',
-  path: '/callback',
-  getParentRoute: () => AuthRouteRoute,
-} as any)
-const AuthAuthViewRoute = AuthAuthViewRouteImport.update({
-  id: '/$authView',
-  path: '/$authView',
-  getParentRoute: () => AuthRouteRoute,
 } as any)
 const PublicTermsRoute = PublicTermsRouteImport.update({
   id: '/terms',
@@ -52,87 +38,104 @@ const PublicPrivacyRoute = PublicPrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => PublicRouteRoute,
 } as any)
-const DashboardDashboardRoute = DashboardDashboardRouteImport.update({
-  id: '/_dashboard/dashboard',
-  path: '/dashboard',
+const AuthenticateddashboardRouteRoute =
+  AuthenticateddashboardRouteRouteImport.update({
+    id: '/_authenticated/(dashboard)',
+    path: '/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const authAuthRouteRoute = authAuthRouteRouteImport.update({
+  id: '/(auth)/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticateddashboardDashboardRoute =
+  AuthenticateddashboardDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticateddashboardRouteRoute,
+  } as any)
+const authAuthCallbackRoute = authAuthCallbackRouteImport.update({
+  id: '/callback',
+  path: '/callback',
+  getParentRoute: () => authAuthRouteRoute,
+} as any)
+const authAuthAuthViewRoute = authAuthAuthViewRouteImport.update({
+  id: '/$authView',
+  path: '/$authView',
+  getParentRoute: () => authAuthRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/auth': typeof AuthRouteRouteWithChildren
-  '/dashboard': typeof DashboardDashboardRoute
+  '/auth': typeof authAuthRouteRouteWithChildren
+  '/': typeof PublicIndexRoute
   '/privacy': typeof PublicPrivacyRoute
   '/terms': typeof PublicTermsRoute
-  '/auth/$authView': typeof AuthAuthViewRoute
-  '/auth/callback': typeof AuthCallbackRoute
-  '/': typeof PublicIndexRoute
+  '/auth/$authView': typeof authAuthAuthViewRoute
+  '/auth/callback': typeof authAuthCallbackRoute
+  '/dashboard': typeof AuthenticateddashboardDashboardRoute
 }
 export interface FileRoutesByTo {
-  '/auth': typeof AuthRouteRouteWithChildren
-  '/dashboard': typeof DashboardDashboardRoute
+  '/auth': typeof authAuthRouteRouteWithChildren
+  '/': typeof PublicIndexRoute
   '/privacy': typeof PublicPrivacyRoute
   '/terms': typeof PublicTermsRoute
-  '/auth/$authView': typeof AuthAuthViewRoute
-  '/auth/callback': typeof AuthCallbackRoute
-  '/': typeof PublicIndexRoute
+  '/auth/$authView': typeof authAuthAuthViewRoute
+  '/auth/callback': typeof authAuthCallbackRoute
+  '/dashboard': typeof AuthenticateddashboardDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_public': typeof PublicRouteRouteWithChildren
-  '/auth': typeof AuthRouteRouteWithChildren
-  '/_dashboard/dashboard': typeof DashboardDashboardRoute
+  '/(auth)/auth': typeof authAuthRouteRouteWithChildren
+  '/_authenticated/(dashboard)': typeof AuthenticateddashboardRouteRouteWithChildren
   '/_public/privacy': typeof PublicPrivacyRoute
   '/_public/terms': typeof PublicTermsRoute
-  '/auth/$authView': typeof AuthAuthViewRoute
-  '/auth/callback': typeof AuthCallbackRoute
   '/_public/': typeof PublicIndexRoute
+  '/(auth)/auth/$authView': typeof authAuthAuthViewRoute
+  '/(auth)/auth/callback': typeof authAuthCallbackRoute
+  '/_authenticated/(dashboard)/dashboard': typeof AuthenticateddashboardDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/auth'
-    | '/dashboard'
+    | '/'
     | '/privacy'
     | '/terms'
     | '/auth/$authView'
     | '/auth/callback'
-    | '/'
+    | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
-    | '/dashboard'
+    | '/'
     | '/privacy'
     | '/terms'
     | '/auth/$authView'
     | '/auth/callback'
-    | '/'
+    | '/dashboard'
   id:
     | '__root__'
     | '/_public'
-    | '/auth'
-    | '/_dashboard/dashboard'
+    | '/(auth)/auth'
+    | '/_authenticated/(dashboard)'
     | '/_public/privacy'
     | '/_public/terms'
-    | '/auth/$authView'
-    | '/auth/callback'
     | '/_public/'
+    | '/(auth)/auth/$authView'
+    | '/(auth)/auth/callback'
+    | '/_authenticated/(dashboard)/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   PublicRouteRoute: typeof PublicRouteRouteWithChildren
-  AuthRouteRoute: typeof AuthRouteRouteWithChildren
-  DashboardDashboardRoute: typeof DashboardDashboardRoute
+  authAuthRouteRoute: typeof authAuthRouteRouteWithChildren
+  AuthenticateddashboardRouteRoute: typeof AuthenticateddashboardRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_public': {
       id: '/_public'
       path: ''
@@ -146,20 +149,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRouteRoute
-    }
-    '/auth/callback': {
-      id: '/auth/callback'
-      path: '/callback'
-      fullPath: '/auth/callback'
-      preLoaderRoute: typeof AuthCallbackRouteImport
-      parentRoute: typeof AuthRouteRoute
-    }
-    '/auth/$authView': {
-      id: '/auth/$authView'
-      path: '/$authView'
-      fullPath: '/auth/$authView'
-      preLoaderRoute: typeof AuthAuthViewRouteImport
-      parentRoute: typeof AuthRouteRoute
     }
     '/_public/terms': {
       id: '/_public/terms'
@@ -175,12 +164,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicPrivacyRouteImport
       parentRoute: typeof PublicRouteRoute
     }
-    '/_dashboard/dashboard': {
-      id: '/_dashboard/dashboard'
+    '/_authenticated/(dashboard)': {
+      id: '/_authenticated/(dashboard)'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticateddashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/auth': {
+      id: '/(auth)/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof authAuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/(dashboard)/dashboard': {
+      id: '/_authenticated/(dashboard)/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardDashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticateddashboardDashboardRouteImport
+      parentRoute: typeof AuthenticateddashboardRouteRoute
+    }
+    '/(auth)/auth/callback': {
+      id: '/(auth)/auth/callback'
+      path: '/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof authAuthCallbackRouteImport
+      parentRoute: typeof authAuthRouteRoute
+    }
+    '/(auth)/auth/$authView': {
+      id: '/(auth)/auth/$authView'
+      path: '/$authView'
+      fullPath: '/auth/$authView'
+      preLoaderRoute: typeof authAuthAuthViewRouteImport
+      parentRoute: typeof authAuthRouteRoute
     }
   }
 }
@@ -201,24 +218,39 @@ const PublicRouteRouteWithChildren = PublicRouteRoute._addFileChildren(
   PublicRouteRouteChildren,
 )
 
-interface AuthRouteRouteChildren {
-  AuthAuthViewRoute: typeof AuthAuthViewRoute
-  AuthCallbackRoute: typeof AuthCallbackRoute
+interface authAuthRouteRouteChildren {
+  authAuthAuthViewRoute: typeof authAuthAuthViewRoute
+  authAuthCallbackRoute: typeof authAuthCallbackRoute
 }
 
-const AuthRouteRouteChildren: AuthRouteRouteChildren = {
-  AuthAuthViewRoute: AuthAuthViewRoute,
-  AuthCallbackRoute: AuthCallbackRoute,
+const authAuthRouteRouteChildren: authAuthRouteRouteChildren = {
+  authAuthAuthViewRoute: authAuthAuthViewRoute,
+  authAuthCallbackRoute: authAuthCallbackRoute,
 }
 
-const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
-  AuthRouteRouteChildren,
+const authAuthRouteRouteWithChildren = authAuthRouteRoute._addFileChildren(
+  authAuthRouteRouteChildren,
 )
+
+interface AuthenticateddashboardRouteRouteChildren {
+  AuthenticateddashboardDashboardRoute: typeof AuthenticateddashboardDashboardRoute
+}
+
+const AuthenticateddashboardRouteRouteChildren: AuthenticateddashboardRouteRouteChildren =
+  {
+    AuthenticateddashboardDashboardRoute: AuthenticateddashboardDashboardRoute,
+  }
+
+const AuthenticateddashboardRouteRouteWithChildren =
+  AuthenticateddashboardRouteRoute._addFileChildren(
+    AuthenticateddashboardRouteRouteChildren,
+  )
 
 const rootRouteChildren: RootRouteChildren = {
   PublicRouteRoute: PublicRouteRouteWithChildren,
-  AuthRouteRoute: AuthRouteRouteWithChildren,
-  DashboardDashboardRoute: DashboardDashboardRoute,
+  authAuthRouteRoute: authAuthRouteRouteWithChildren,
+  AuthenticateddashboardRouteRoute:
+    AuthenticateddashboardRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

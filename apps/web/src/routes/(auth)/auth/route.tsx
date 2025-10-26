@@ -2,7 +2,7 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/auth")({
+export const Route = createFileRoute("/(auth)/auth")({
   component: RouteComponent,
 });
 
