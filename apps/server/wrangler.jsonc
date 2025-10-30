@@ -8,7 +8,7 @@
 		"CORS_ORIGIN": "https://ship-fullstack.soluty-lv.workers.dev",
 		"BETTER_AUTH_URL": "https://ship-fullstack-server.ship-fullstack.workers.dev",
 		// Add non-sensitive public IDs here:
-		"GITHUB_CLIENT_ID": "Ov23lisJ5FpBoklrFAVk"
+		// "GITHUB_CLIENT_ID": "Ov23lisJ5FpBoklrFAVk"
 		// "GOOGLE_CLIENT_ID": "your_google_client_id"
 	}
 	// For sensitive data, use:
