@@ -7,6 +7,7 @@
 		"NODE_ENV": "production",
 		"CORS_ORIGIN": "https://ship-fullstack.soluty-lv.workers.dev",
 		"BETTER_AUTH_URL": "https://ship-fullstack-server.ship-fullstack.workers.dev",
+    "DATABASE_URL": "postgresql://neondb_owner:npg_a0UHXGWDr3xf@ep-calm-snow-agbm7lo9.c-2.eu-central-1.aws.neon.tech/neondb?channel_binding=require &"
 		// Add non-sensitive public IDs here:
 		// "GITHUB_CLIENT_ID": "Ov23lisJ5FpBoklrFAVk"
 		// "GOOGLE_CLIENT_ID": "your_google_client_id"
