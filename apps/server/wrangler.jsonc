@@ -5,7 +5,7 @@
 	"compatibility_flags": ["nodejs_compat"],
 	"vars": {
 		"NODE_ENV": "production",
-		"CORS_ORIGIN": "https://ship-fullstack.ship-fullstack.workers.dev",
+		"CORS_ORIGIN": "https://ship-fullstack.soluty-lv.workers.dev",
 		"BETTER_AUTH_URL": "https://ship-fullstack-server.ship-fullstack.workers.dev",
 		// Add non-sensitive public IDs here:
 		"GITHUB_CLIENT_ID": "Ov23lisJ5FpBoklrFAVk"

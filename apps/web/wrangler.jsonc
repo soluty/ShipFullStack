@@ -1,4 +1,5 @@
 {
+  // 这个配置是命令行使用的, Github Actions使用的配置在另外的地方
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "ship-fullstack",
 	"compatibility_date": "2025-09-02",
