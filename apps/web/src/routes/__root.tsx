@@ -12,7 +12,6 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "@/components/context/theme-provider";
 import Loader from "@/components/loader";
 import { Toaster } from "@/components/ui/sonner";
-import { getLocale } from "@/paraglide/runtime.js";
 import type { orpc } from "@/utils/orpc";
 import appCss from "../index.css?url";
 
@@ -49,7 +48,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 function RootDocument() {
   const isFetching = useRouterState({ select: (s) => s.isLoading });
   return (
-    <html className="dark" lang={getLocale()}>
+    <html className="dark" lang="zh">
       <head>
         <HeadContent />
       </head>
