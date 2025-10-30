@@ -8,7 +8,7 @@
 		"not_found_handling": "single-page-application"
 	},
 	"vars": {
-		"VITE_SERVER_URL": "https://ship-fullstack-server.ship-fullstack.workers.dev",
-		"VITE_APP_URL": "https://ship-fullstack.ship-fullstack.workers.dev"
+		"VITE_SERVER_URL": "https://ship-fullstack-server.soluty-lv.workers.dev",
+		"VITE_APP_URL": "https://ship-fullstack.soluty-lv.workers.dev"
 	}
 }
